@@ -14,7 +14,10 @@ from __future__ import with_statement
 
 import urllib
 import urllib2
-import json
+try:
+	import json
+except ImportError:
+	from flask import json
 import os.path
 
 API_URL	= 'http://api.face.com'
