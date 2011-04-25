@@ -135,7 +135,7 @@ class FaceClient():
 		response = self.send_request('faces/recognize', data)
 		return response
 
-	def faces_train(self, uids = None, namespace = None):
+	def faces_train(self, uids = None, callback_url=None, namespace = None):
 		"""
 		Calls the training procedure for the specified UIDs, and reports back changes.
 
@@ -149,6 +149,8 @@ class FaceClient():
 		data = {'uids': uids}
 		self.__append_user_auth_data(data, facebook_uids, twitter_uids)
 		self.__append_optional_arguments(data, namespace = namespace)
+		if callback_url:
+			data['callback_url'] = callback_url
 
 		response = self.send_request('faces/train', data)
 		return response
