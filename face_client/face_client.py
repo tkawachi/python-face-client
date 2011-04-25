@@ -17,7 +17,10 @@ import urllib2
 try:
 	import json
 except ImportError:
-	from flask import json
+    try:
+        from django.utils import simplejson as json
+    except ImportError:
+        from flask import json
 import os.path
 
 API_URL	= 'http://api.face.com'
