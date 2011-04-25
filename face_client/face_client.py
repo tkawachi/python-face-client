@@ -49,7 +49,7 @@ class FaceClient():
 			raise AttributeError('Missing Facebook user or session argument')
 
 		self.facebook_credentials = {'fb_user': user,
-									'fb_session': session}
+									'fb_oauth_token': session}
 
 	### Recognition engine methods ###
 	def faces_detect(self, urls = None, file = None, aggressive=False):
@@ -270,8 +270,8 @@ class FaceClient():
 
 	def __append_user_auth_data(self, data, facebook_uids, twitter_uids):
 		if facebook_uids:
-			data.update({'user_auth': 'fb_user:%s,fb_session:%s' % (self.facebook_credentials['fb_user'],
-						 self.facebook_credentials['fb_session'])})
+			data.update({'user_auth': 'fb_user:%s,fb_oauth_token:%s' % (self.facebook_credentials['fb_user'],
+						 self.facebook_credentials['fb_oauth_token'])})
 
 		if twitter_uids:
 			# If both user/password and OAuth credentials are provided, use
